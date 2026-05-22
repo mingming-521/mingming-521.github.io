@@ -1,1 +1,572 @@
-welcome to my world.
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>墨言小筑 · 个人博客</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* 容器 */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            padding: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e2e8f0;
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(8px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            font-weight: 500;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #334155;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+        /* 移动端导航简单适配 */
+        @media (max-width: 640px) {
+            .navbar {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .nav-links {
+                gap: 20px;
+            }
+        }
+
+        /* 封面区域 */
+        .hero-cover {
+            margin: 32px 0 24px 0;
+            border-radius: 32px;
+            overflow: hidden;
+            background: #e2e8f0;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+        .cover-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .cover-controls {
+            display: flex;
+            gap: 12px;
+            padding: 12px 16px;
+            background: white;
+            border-top: 1px solid #f1f5f9;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        /* 按钮样式 */
+        .btn-icon {
+            background: #f1f5f9;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            color: #1e293b;
+        }
+        .btn-icon i {
+            font-size: 0.9rem;
+        }
+        .btn-icon:hover {
+            background: #e2e8f0;
+            transform: translateY(-1px);
+        }
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #2563eb;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #cbd5e1;
+        }
+        .btn-outline:hover {
+            background: #f8fafc;
+            border-color: #94a3b8;
+        }
+
+        /* 博主信息卡片 */
+        .author-section {
+            background: white;
+            border-radius: 32px;
+            padding: 32px 24px;
+            margin: 32px 0 48px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.03);
+            border: 1px solid #eef2ff;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 32px;
+        }
+        .avatar-wrapper {
+            position: relative;
+            text-align: center;
+        }
+        .avatar-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            background: #eef2ff;
+        }
+        .avatar-buttons {
+            margin-top: 12px;
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+        .author-info {
+            flex: 1;
+        }
+        .author-info h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(120deg, #0f172a, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .author-bio {
+            color: #475569;
+            margin: 8px 0 16px 0;
+            max-width: 500px;
+        }
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+        .social-links a {
+            color: #64748b;
+            font-size: 1.3rem;
+            transition: color 0.2s;
+        }
+        .social-links a:hover {
+            color: #3b82f6;
+        }
+
+        /* 文章区域 */
+        .blog-section {
+            margin: 48px 0;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-title i {
+            color: #3b82f6;
+            font-size: 1.8rem;
+        }
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 28px;
+        }
+        .article-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.25s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            border: 1px solid #eef2ff;
+        }
+        .article-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+            border-color: #cbd5e1;
+        }
+        .card-content {
+            padding: 24px;
+        }
+        .article-tag {
+            color: #3b82f6;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+        .article-title {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin: 8px 0 12px 0;
+            line-height: 1.4;
+        }
+        .article-excerpt {
+            color: #475569;
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eef2ff;
+            padding-top: 16px;
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        .read-more {
+            color: #3b82f6;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        footer {
+            margin-top: 80px;
+            padding: 32px 0;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+
+        /* 隐藏默认file input */
+        .hidden-input {
+            display: none;
+        }
+
+        /* 小提示 */
+        .tip-note {
+            background: #fef9e3;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            padding: 6px 12px;
+            color: #b45309;
+            margin-left: 10px;
+            display: inline-block;
+        }
+
+        @media (max-width: 640px) {
+            .cover-img {
+                height: 180px;
+            }
+            .author-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            .author-info {
+                text-align: center;
+            }
+            .social-links {
+                justify-content: center;
+            }
+            .cover-controls {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="logo">📖 墨言小筑</div>
+        <div class="nav-links">
+            <a href="#">首页</a>
+            <a href="#">文章</a>
+            <a href="#">关于</a>
+            <a href="#">此刻</a>
+        </div>
+    </nav>
+
+    <!-- 封面区域 (可换图片) -->
+    <div class="hero-cover">
+        <img id="coverImage" class="cover-img" src="https://picsum.photos/id/104/1200/400" alt="博客封面">
+        <div class="cover-controls">
+            <button id="uploadCoverBtn" class="btn-icon"><i class="fas fa-image"></i> 更换封面</button>
+            <button id="resetCoverBtn" class="btn-icon btn-outline"><i class="fas fa-undo-alt"></i> 重置封面</button>
+            <input type="file" id="coverFileInput" class="hidden-input" accept="image/jpeg,image/png,image/webp,image/jpg">
+            <span class="tip-note"><i class="fas fa-save"></i> 自动保存</span>
+        </div>
+    </div>
+
+    <!-- 博主信息区 + 头像换图 -->
+    <div class="author-section">
+        <div class="avatar-wrapper">
+            <img id="avatarImage" class="avatar-img" src="https://ui-avatars.com/api/?background=3b82f6&color=fff&name=墨&bold=true&size=120&length=1&fontsize=60" alt="博主头像">
+            <div class="avatar-buttons">
+                <button id="uploadAvatarBtn" class="btn-icon" style="padding: 4px 12px;"><i class="fas fa-camera"></i> 换头像</button>
+                <button id="resetAvatarBtn" class="btn-icon btn-outline" style="padding: 4px 12px;"><i class="fas fa-history"></i> 重置</button>
+                <input type="file" id="avatarFileInput" class="hidden-input" accept="image/jpeg,image/png,image/webp,image/jpg">
+            </div>
+        </div>
+        <div class="author-info">
+            <h1>林墨言 <span style="font-size: 1rem;">✨ 写作者 / 前端工匠</span></h1>
+            <p class="author-bio">热爱技术、设计与文字。记录思考，分享灵感，在这里探索数字世界的温柔与锋芒。</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 最新文章板块 -->
+    <div class="blog-section">
+        <div class="section-title">
+            <i class="fas fa-feather-alt"></i>
+            <span>最新随想</span>
+        </div>
+        <div class="articles-grid">
+            <article class="article-card">
+                <div class="card-content">
+                    <div class="article-tag"><i class="far fa-calendar-alt"></i> 2025.04.12</div>
+                    <h3 class="article-title">设计系统中的「呼吸感」</h3>
+                    <p class="article-excerpt">白空间不是浪费，而是视觉的优雅停顿。聊聊如何让UI更有节奏感与亲和力...</p>
+                    <div class="article-meta">
+                        <span>📖 6分钟阅读</span>
+                        <a href="#" class="read-more">探索更多 →</a>
+                    </div>
+                </div>
+            </article>
+            <article class="article-card">
+                <div class="card-content">
+                    <div class="article-tag"><i class="far fa-calendar-alt"></i> 2025.03.28</div>
+                    <h3 class="article-title">个人知识库搭建: 从碎片到体系</h3>
+                    <p class="article-excerpt">Obsidian + 卡片盒笔记法：构建第二大脑，让创作流动起来...</p>
+                    <div class="article-meta">
+                        <span>📖 9分钟阅读</span>
+                        <a href="#" class="read-more">探索更多 →</a>
+                    </div>
+                </div>
+            </article>
+            <article class="article-card">
+                <div class="card-content">
+                    <div class="article-tag"><i class="far fa-calendar-alt"></i> 2025.03.15</div>
+                    <h3 class="article-title">AI 时代的前端生存策略</h3>
+                    <p class="article-excerpt">工具迭代加速，哪些核心能力会历久弥新？一些真诚的思考与建议...</p>
+                    <div class="article-meta">
+                        <span>📖 5分钟阅读</span>
+                        <a href="#" class="read-more">探索更多 →</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 墨言小筑 | 保持好奇，保持创作 · 博客首页支持自由更换封面 & 头像</p>
+    </footer>
+</div>
+
+<script>
+    (function() {
+        // ---------- 默认图片常量 ----------
+        const DEFAULT_COVER = "https://picsum.photos/id/104/1200/400";   // 静谧风景
+        const DEFAULT_AVATAR = "https://ui-avatars.com/api/?background=3b82f6&color=fff&name=墨&bold=true&size=120&length=1&fontsize=60";
+        
+        // DOM 元素
+        const coverImg = document.getElementById('coverImage');
+        const avatarImg = document.getElementById('avatarImage');
+        
+        const coverUploadBtn = document.getElementById('uploadCoverBtn');
+        const coverResetBtn = document.getElementById('resetCoverBtn');
+        const coverFileInput = document.getElementById('coverFileInput');
+        
+        const avatarUploadBtn = document.getElementById('uploadAvatarBtn');
+        const avatarResetBtn = document.getElementById('resetAvatarBtn');
+        const avatarFileInput = document.getElementById('avatarFileInput');
+        
+        // ---------- 辅助函数: 存储图片到 localStorage (base64) ----------
+        function saveCoverToLocal(base64Data) {
+            if (base64Data) {
+                localStorage.setItem('blog_cover_image', base64Data);
+            } else {
+                localStorage.removeItem('blog_cover_image');
+            }
+        }
+        
+        function saveAvatarToLocal(base64Data) {
+            if (base64Data) {
+                localStorage.setItem('blog_avatar_image', base64Data);
+            } else {
+                localStorage.removeItem('blog_avatar_image');
+            }
+        }
+        
+        // 读取本地存储并应用图片
+        function loadStoredCover() {
+            const storedCover = localStorage.getItem('blog_cover_image');
+            if (storedCover && storedCover.startsWith('data:image')) {
+                coverImg.src = storedCover;
+            } else {
+                // 无有效存储则使用默认
+                coverImg.src = DEFAULT_COVER;
+            }
+        }
+        
+        function loadStoredAvatar() {
+            const storedAvatar = localStorage.getItem('blog_avatar_image');
+            if (storedAvatar && storedAvatar.startsWith('data:image')) {
+                avatarImg.src = storedAvatar;
+            } else {
+                avatarImg.src = DEFAULT_AVATAR;
+            }
+        }
+        
+        // 通用：将文件转成 base64 并更新图片，可自定义回调存储
+        function fileToBase64(file, onSuccess, onError) {
+            if (!file || !file.type.match('image.*')) {
+                alert('请选择图片文件 (jpg, png, webp 等)');
+                if(onError) onError();
+                return;
+            }
+            // 简单限制文件大小 5MB，避免localStorage过大卡顿，提醒
+            if (file.size > 5 * 1024 * 1024) {
+                alert('图片大小超过 5MB，建议上传小一点的图片以保证性能和存储效率～');
+                if(onError) onError();
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                const base64String = evt.target.result;
+                if (onSuccess) onSuccess(base64String);
+            };
+            reader.onerror = function() {
+                alert('图片读取失败，请重试');
+                if(onError) onError();
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        // 更换封面逻辑
+        function handleCoverUpload(file) {
+            if (!file) return;
+            fileToBase64(file, (base64) => {
+                coverImg.src = base64;
+                saveCoverToLocal(base64);
+            }, () => {});
+        }
+        
+        function handleAvatarUpload(file) {
+            if (!file) return;
+            fileToBase64(file, (base64) => {
+                avatarImg.src = base64;
+                saveAvatarToLocal(base64);
+            }, () => {});
+        }
+        
+        // 重置封面
+        function resetCover() {
+            coverImg.src = DEFAULT_COVER;
+            saveCoverToLocal(null);     // 清除存储的封面自定义图
+        }
+        
+        // 重置头像
+        function resetAvatar() {
+            avatarImg.src = DEFAULT_AVATAR;
+            saveAvatarToLocal(null);
+        }
+        
+        // ---------- 绑定事件 ----------
+        // 封面更换触发
+        coverUploadBtn.addEventListener('click', () => {
+            coverFileInput.click();
+        });
+        coverFileInput.addEventListener('change', (e) => {
+            if (e.target.files && e.target.files.length > 0) {
+                handleCoverUpload(e.target.files[0]);
+            }
+            coverFileInput.value = ''; // 清空以便再次上传同文件
+        });
+        coverResetBtn.addEventListener('click', resetCover);
+        
+        // 头像更换触发
+        avatarUploadBtn.addEventListener('click', () => {
+            avatarFileInput.click();
+        });
+        avatarFileInput.addEventListener('change', (e) => {
+            if (e.target.files && e.target.files.length > 0) {
+                handleAvatarUpload(e.target.files[0]);
+            }
+            avatarFileInput.value = '';
+        });
+        avatarResetBtn.addEventListener('click', resetAvatar);
+        
+        // 页面加载时应用本地存储的图片
+        loadStoredCover();
+        loadStoredAvatar();
+        
+        // 可选：添加一个额外优雅处理, 如果图片加载失败时重置默认（非关键）
+        coverImg.onerror = function() {
+            if (coverImg.src !== DEFAULT_COVER && !localStorage.getItem('blog_cover_image')) {
+                // 只在意外加载失败时恢复
+                coverImg.src = DEFAULT_COVER;
+            }
+        };
+        avatarImg.onerror = function() {
+            if (avatarImg.src !== DEFAULT_AVATAR && !localStorage.getItem('blog_avatar_image')) {
+                avatarImg.src = DEFAULT_AVATAR;
+            }
+        };
+        
+        // 提示用户换图功能
+        console.log('博客首页已启动 — 封面和头像支持一键替换，自动保存于浏览器中');
+    })();
+</script>
+</body>
+</html>
